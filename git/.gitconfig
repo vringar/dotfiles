@@ -1,0 +1,32 @@
+[merge]
+	conflictstyle = diff3
+[core]
+	editor = vim
+[pull]
+	ff = only
+[cinnabar]
+	helper = /home/stefan/.git-cinnabar/git-cinnabar-helper
+[init]
+	defaultBranch = main
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[difftool]
+	prompt = false
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
+[push]
+	default = upstream
+[alias]
+	root = rev-parse --show-toplevel
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
