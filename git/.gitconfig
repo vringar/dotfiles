@@ -23,6 +23,7 @@
 	prompt = false
 [push]
 	default = upstream
+	autoSetupRemote = true
 [alias]
 	root = rev-parse --show-toplevel
 [filter "lfs"]
@@ -30,3 +31,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[checkout]
+	defaultRemote = origin
