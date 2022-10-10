@@ -60,24 +60,22 @@ alias vim='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export LC_TIME="en_GB.UTF-8"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias tmux='tmux -u'
 alias code='code-insiders'
+alias tf='terraform'
 export BROWSER="firefox-nightly"
 
 # setting up go
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=~/projects/Go
+
 # Setting up `conda` to work
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
