@@ -81,6 +81,7 @@ export GOPATH=~/projects/Go
 
 eval "$(starship init zsh)"
 
+export RUST_BACKTRACE=1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
