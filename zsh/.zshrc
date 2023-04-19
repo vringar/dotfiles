@@ -72,10 +72,6 @@ alias code='code-insiders'
 alias tf='terraform'
 export BROWSER="firefox-nightly"
 
-# setting up go
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=~/projects/Go
-
 # Setting up `conda` to work
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
