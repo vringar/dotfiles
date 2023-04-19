@@ -6,9 +6,7 @@ Requirments:
 
 - zsh
 - oh-my-zsh
-- starship
 - nvim
-- alacritty
 
 ## TODOS
 

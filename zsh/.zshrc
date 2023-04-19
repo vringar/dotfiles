@@ -70,10 +70,8 @@ export LC_TIME="en_GB.UTF-8"
 alias tmux='tmux -u'
 alias code='code-insiders'
 alias tf='terraform'
+alias dck='docker compose'
 export BROWSER="firefox-nightly"
-
-# Setting up `conda` to work
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 eval "$(starship init zsh)"
 
@@ -81,20 +79,20 @@ export RUST_BACKTRACE=1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/run/media/stefan/SourceCode/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/stefan/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/home/stefan/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/stefan/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/run/media/stefan/SourceCode/mambaforge/bin:$PATH"
+        export PATH="/home/stefan/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh"
+if [ -f "/home/stefan/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/stefan/mambaforge/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 
