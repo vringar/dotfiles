@@ -37,8 +37,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git tmux python rust 
+  git tmux python rust nix-shell nix-zsh-completions
 )
+
+prompt_nix_shell_setup
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,20 +81,20 @@ export RUST_BACKTRACE=1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/stefan/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/run/media/stefan/SourceCode/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/stefan/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/stefan/mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/home/stefan/mambaforge/bin:$PATH"
+        export PATH="/run/media/stefan/SourceCode/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/home/stefan/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/stefan/mambaforge/etc/profile.d/mamba.sh"
+if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 
