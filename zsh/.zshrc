@@ -43,8 +43,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-prompt_nix_shell_setup
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
