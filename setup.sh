@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# TODO check if oh-my-ysh is installed
+# TODO check if oh-my-zsh is installed
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # TODO download rustup

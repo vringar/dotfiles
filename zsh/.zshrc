@@ -40,9 +40,10 @@ plugins=(
   git tmux python rust nix-shell nix-zsh-completions
 )
 
-prompt_nix_shell_setup
 
 source $ZSH/oh-my-zsh.sh
+
+prompt_nix_shell_setup
 
 # User configuration
 
