@@ -1,1 +1,1 @@
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$PATH
