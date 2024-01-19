@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$PATH
+source $HOME/.config/plasma-workspace/env/path.sh
+
 # Path to your oh-my-zsh installation.
-export ZSH=/home/stefan/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Use powerline
 USE_POWERLINE="true"
@@ -11,6 +12,21 @@ if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
 
+LOCAL_CONFIG="$HOME/.zshrc.local"
+source $LOCAL_CONFIG
+
+variables=("DOTFILES_REPO" "CONDA_LOCATION")
+
+for variable in "${variables[@]}"; do
+    if [ -z "${(P)variable}" ]; then
+        echo "Please set the variable $variable in $LOCAL_CONFIG."
+    fi
+done
+if [ -z "$DOTFILES_REPO" ]; then
+  cd $DOTFILES_REPO
+  ./check-update.zsh
+  cd -
+fi
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -47,7 +63,6 @@ plugins=(
   git tmux python rust nix-shell nix-zsh-completions
 )
 
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -80,33 +95,29 @@ alias code='code-insiders'
 alias tf='terraform'
 alias dck='docker compose'
 if [[ $(which firefox-nightly) ]]; then
-    export BROWSER="firefox-nightly"
+  export BROWSER="firefox-nightly"
 fi
 eval "$(starship init zsh)"
 
 export RUST_BACKTRACE=1
 
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/run/media/stefan/SourceCode/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$CONDA_LOCATION/bin/conda" 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/run/media/stefan/SourceCode/mambaforge/bin:$PATH"
-    fi
+  if [ -f "$CONDA_LOCATION/etc/profile.d/conda.sh" ]; then
+    . "$CONDA_LOCATION/etc/profile.d/conda.sh"
+  else
+    export PATH="$CONDA_LOCATION/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 
-if [ -f "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/run/media/stefan/SourceCode/mambaforge/etc/profile.d/mamba.sh"
+if [ -f "$CONDA_LOCATION/etc/profile.d/mamba.sh" ]; then
+  . "$CONDA_LOCATION/etc/profile.d/mamba.sh"
 fi
-# <<< conda initialize <<<
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
