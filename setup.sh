@@ -36,3 +36,4 @@ ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "${ZSH_CUSTOM:-$ZSH/custom}/themes/vring
 #KDE
 ln -sf "$SRC_DIR/KDE/path.sh" "$HOME/.config/plasma-workspace/env/path.sh"
 ln -sf "$SRC_DIR/KDE/kglobalshortcutsrc" "$HOME/.config/kglobalshortcutsrc"
+ln -sf "$SRC_DIR/KDE/khotkeysrc" "$HOME/.config/khotkeysrc"
