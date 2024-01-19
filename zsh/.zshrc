@@ -4,6 +4,13 @@ export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:
 # Path to your oh-my-zsh installation.
 export ZSH=/home/stefan/.oh-my-zsh
 
+# Use powerline
+USE_POWERLINE="true"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -72,11 +79,14 @@ alias tmux='tmux -u'
 alias code='code-insiders'
 alias tf='terraform'
 alias dck='docker compose'
-export BROWSER="firefox-nightly"
-
+if [[ $(which firefox-nightly) ]]; then
+    export BROWSER="firefox-nightly"
+fi
 eval "$(starship init zsh)"
 
 export RUST_BACKTRACE=1
+
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -1,7 +1,7 @@
 [merge]
 	conflictstyle = diff3
 [core]
-	editor = vim
+	editor = nvim
 [pull]
 	ff = only
 [cinnabar]
