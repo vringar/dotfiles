@@ -22,7 +22,7 @@ for variable in "${variables[@]}"; do
         echo "Please set the variable $variable in $LOCAL_CONFIG."
     fi
 done
-if [ -z "$DOTFILES_REPO" ]; then
+if [[ isset(DOTFILES_REPO) ]]; then
   cd $DOTFILES_REPO
   ./check-update.zsh
   cd -
