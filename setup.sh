@@ -3,21 +3,36 @@ set -e
 
 [[ -v ZSH ]] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# TODO download rustup
+if ! command -v rustup &>/dev/null; then
+    echo "rustup not found. Installing..."
+
+    # Run the rustup installer script
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    # Add the cargo binary directory to the PATH
+    export PATH="$HOME/.cargo/bin:$PATH"
+
+    # Source the shell profile to apply changes
+    source "$HOME/.zshrc"
+fi
+
 # Install alacritty, starship
 cargo install alacritty starship bat
 
 SRC_DIR="$(pwd)"
-TARGET_DIR="/home/$(whoami)"
 
 # start linking
 
 # Git
-ln -sf "$SRC_DIR/git/.gitconfig" "$TARGET_DIR/.gitconfig"
+ln -sf "$SRC_DIR/git/.gitconfig" "$HOME/.gitconfig"
 
-# Other
-ln -sf "$SRC_DIR/other/.virmrc" "$TARGET_DIR/.virmrc"
+# Vim
+ln -sf "$SRC_DIR/other/.virmrc" "$HOME/.virmrc"
 
 # Zsh
-ln -sf "$SRC_DIR/zsh/.zshrc" "$TARGET_DIR/.zshrc"
-ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "$TARGET_DIR/.oh-my-zsh/themes/vringar.zsh-theme"
+ln -sf "$SRC_DIR/zsh/.zshrc" "$HOME/.zshrc"
+ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "${ZSH_CUSTOM:-$ZSH/custom}/themes/vringar.zsh-theme"
+
+#KDE
+ln -sf "$SRC_DIR/KDE/path.sh" "$HOME/.config/plasma-workspace/env/path.sh"
+ln -sf "$SRC_DIR/KDE/kglobalshortcutsrc" "$HOME/.config/kglobalshortcutsrc"
