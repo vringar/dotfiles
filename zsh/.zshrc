@@ -22,11 +22,15 @@ for variable in "${variables[@]}"; do
         echo "Please set the variable $variable in $LOCAL_CONFIG."
     fi
 done
-if [[ isset(DOTFILES_REPO) ]]; then
+
+UPDATE_CHECK_DONE_PATH=/tmp/dotfiles_updated_checked
+if [[ ! -e $UPDATE_CHECK_DONE_PATH && -n $DOTFILES_REPO ]]; then
   cd $DOTFILES_REPO
   ./check-update.zsh
+  touch $UPDATE_CHECK_DONE_PATH
   cd -
 fi
+unset UPDATE_CHECK_DONE_PATH
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
