@@ -98,7 +98,7 @@ alias tmux='tmux -u'
 alias code='code-insiders'
 alias tf='terraform'
 alias dck='docker compose'
-if [[ $(which firefox-nightly) ]]; then
+if [[ $(which firefox-nightly &> /dev/null) ]]; then
   export BROWSER="firefox-nightly"
 fi
 eval "$(starship init zsh)"
