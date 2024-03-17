@@ -27,7 +27,8 @@ SRC_DIR="$(pwd)"
 ln -sf "$SRC_DIR/git/.gitconfig" "$HOME/.gitconfig"
 
 # Vim
-ln -sf "$SRC_DIR/other/.virmrc" "$HOME/.virmrc"
+mkdir -p "$HOME/.config/nvim"
+ln -sf "$SRC_DIR/other/.vimrc" "$HOME/.config/nvim/init.vim"
 
 # Zsh
 ln -sf "$SRC_DIR/zsh/.zshrc" "$HOME/.zshrc"
@@ -37,3 +38,9 @@ ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "${ZSH_CUSTOM:-$ZSH/custom}/themes/vring
 ln -sf "$SRC_DIR/KDE/path.sh" "$HOME/.config/plasma-workspace/env/path.sh"
 ln -sf "$SRC_DIR/KDE/kglobalshortcutsrc" "$HOME/.config/kglobalshortcutsrc"
 ln -sf "$SRC_DIR/KDE/khotkeysrc" "$HOME/.config/khotkeysrc"
+
+#SSH
+systemctl --user enable ssh-agent.service
+systemctl --user start ssh-agent.service
+
+echo "Setup ran to completion"
