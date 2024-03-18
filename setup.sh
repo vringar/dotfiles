@@ -14,6 +14,8 @@ if ! command -v rustup &>/dev/null; then
 
     # Source the shell profile to apply changes
     source "$HOME/.zshrc"
+else
+    rustup update
 fi
 
 # Install alacritty, starship
