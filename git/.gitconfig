@@ -35,3 +35,5 @@
 	defaultRemote = origin
 [fetch]
 	prune = true
+[rerere]
+	enable = true
