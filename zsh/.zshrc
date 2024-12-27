@@ -12,17 +12,19 @@ if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
 
-LOCAL_CONFIG="$HOME/.zshrc.local"
-source $LOCAL_CONFIG
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  LOCAL_CONFIG="$HOME/.zshrc.local"
+  source $LOCAL_CONFIG
 
-variables=("DOTFILES_REPO" "CONDA_LOCATION")
+  variables=("CONDA_LOCATION")
 
-for variable in "${variables[@]}"; do
-    if [ -z "${(P)variable}" ]; then
-        echo "Please set the variable $variable in $LOCAL_CONFIG."
-    fi
-done
-
+  for variable in "${variables[@]}"; do
+      if [ -z "${(P)variable}" ]; then
+          echo "Please set the variable $variable in $LOCAL_CONFIG."
+      fi
+  done
+fi
+DOTFILES_REPO=$(dirname $(dirname $(readlink "$HOME/.zshrc")))
 UPDATE_CHECK_DONE_PATH=/tmp/dotfiles_updated_checked
 if [[ ! -e $UPDATE_CHECK_DONE_PATH && -n $DOTFILES_REPO ]]; then
   cd $DOTFILES_REPO
