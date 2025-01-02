@@ -1057,6 +1057,7 @@ WindowsCount=0
 Theme[$d]
 
 [KDE]
+AnimationDurationFactor[$d]
 ChangeCursor[$d]
 ColorScheme[$d]
 DefaultDarkLookAndFeel[$d]
@@ -1086,6 +1087,15 @@ Sort reversed[$d]
 Speedbar Width[$d]
 View Style[$d]
 detailedViewIconSize[$d]
+listViewIconSize[$d]
+
+[KScreen]
+ScaleFactor[$d]
+ScreenScaleFactors[$d]
+XwaylandClientsScale[$d]
+
+[KShortcutsDialog Settings]
+Dialog Size[$d]
 
 [Main]
 AlreadyImported=defaults,spectacle,konsole,kde32b1,konqueror_gestures_kde321
@@ -1107,6 +1117,7 @@ Shortcut=
 [WM]
 activeBackground[$d]
 activeBlend[$d]
+activeFont[$d]
 activeForeground[$d]
 inactiveBackground[$d]
 inactiveBlend[$d]

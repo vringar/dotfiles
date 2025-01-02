@@ -12,18 +12,17 @@ if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
 
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  LOCAL_CONFIG="$HOME/.zshrc.local"
+LOCAL_CONFIG="$HOME/.zshrc.local"
+if [[ -e $LOCAL_CONFIG ]]; then
   source $LOCAL_CONFIG
-
-  variables=("CONDA_LOCATION")
-
+  variables=("MAMBAFORGE_ROOT")
   for variable in "${variables[@]}"; do
       if [ -z "${(P)variable}" ]; then
           echo "Please set the variable $variable in $LOCAL_CONFIG."
       fi
   done
 fi
+
 DOTFILES_REPO=$(dirname $(dirname $(readlink "$HOME/.zshrc")))
 UPDATE_CHECK_DONE_PATH=/tmp/dotfiles_updated_checked
 if [[ ! -e $UPDATE_CHECK_DONE_PATH && -n $DOTFILES_REPO ]]; then
@@ -33,6 +32,7 @@ if [[ ! -e $UPDATE_CHECK_DONE_PATH && -n $DOTFILES_REPO ]]; then
   cd -
 fi
 unset UPDATE_CHECK_DONE_PATH
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -66,7 +66,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git tmux python rust nix-shell nix-zsh-completions
+  tmux git python rust nix-shell nix-zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,23 +107,6 @@ eval "$(starship init zsh)"
 
 export RUST_BACKTRACE=1
 
-
-__conda_setup="$("$CONDA_LOCATION/bin/conda" 'shell.zsh' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__conda_setup"
-else
-  if [ -f "$CONDA_LOCATION/etc/profile.d/conda.sh" ]; then
-    . "$CONDA_LOCATION/etc/profile.d/conda.sh"
-  else
-    export PATH="$CONDA_LOCATION/bin:$PATH"
-  fi
-fi
-unset __conda_setup
-
-if [ -f "$CONDA_LOCATION/etc/profile.d/mamba.sh" ]; then
-  . "$CONDA_LOCATION/etc/profile.d/mamba.sh"
-fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
@@ -131,4 +114,25 @@ export NVM_DIR="$HOME/.nvm"
 
 if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
+fi
+
+# TODO: Only one check to see if conda/mamba exists and then error in subsequent checks
+__conda_setup="$($MAMBAFORGE_ROOT/bin/conda 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$MAMBAFORGE_ROOT/etc/profile.d/conda.sh" ]; then
+        . "$MAMBAFORGE_ROOT/etc/profile.d/conda.sh"
+    else
+        export PATH="$MAMBAFORGE_ROOT/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "$MAMBAFORGE_ROOT/etc/profile.d/mamba.sh" ]; then
+    . "$MAMBAFORGE_ROOT/etc/profile.d/mamba.sh"
+fi
+
+if command -v conda &>/dev/null; then
+    conda config --set auto_activate_base false
 fi

@@ -1,7 +1,15 @@
 [merge]
 	conflictstyle = diff3
 [core]
-	editor = nvim
+    editor = nvim
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    side-by-side = true
+[diff]
+    colorMoved = default
 [pull]
 	ff = only
 [cinnabar]
@@ -36,4 +44,9 @@
 [fetch]
 	prune = true
 [rerere]
-	enable = true
+    enable = true
+[sendemail]
+	smtpserver = smtp.migadu.com
+	smtpuser = git@zabka.it
+	smtpencryption = ssl
+	smtpserverport = 465
