@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Get the current branch name
 current_branch=$(git rev-parse --abbrev-ref HEAD)
