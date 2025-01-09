@@ -97,12 +97,12 @@ export LC_TIME="en_GB.UTF-8"
 # For a full list of active aliases, run `alias`.
 
 alias tmux='tmux -u'
-if [[ $(which code-insiders &> /dev/null) ]]; then
+if command -v code-insiders &> /dev/null; then
   alias code='code-insiders'
 fi
 alias tf='terraform'
 alias dck='docker compose'
-if [[ $(which firefox-nightly &> /dev/null) ]]; then
+if command -v firefox-nightly &> /dev/null; then
   export BROWSER="firefox-nightly"
 fi
 eval "$(starship init zsh)"
