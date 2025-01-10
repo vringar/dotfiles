@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $HOME/.config/plasma-workspace/env/path.sh
@@ -15,14 +16,7 @@ fi
 LOCAL_CONFIG="$HOME/.zshrc.local"
 if [[ -e $LOCAL_CONFIG ]]; then
   source $LOCAL_CONFIG
-  variables=("MAMBAFORGE_ROOT")
-  for variable in "${variables[@]}"; do
-      if [ -z "${(P)variable}" ]; then
-          echo "Please set the variable $variable in $LOCAL_CONFIG."
-      fi
-  done
 fi
-
 DOTFILES_REPO=$(dirname $(dirname $(readlink "$HOME/.zshrc")))
 UPDATE_CHECK_DONE_PATH=/tmp/dotfiles_updated_checked
 if [[ ! -e $UPDATE_CHECK_DONE_PATH && -n $DOTFILES_REPO ]]; then

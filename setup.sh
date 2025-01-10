@@ -23,7 +23,6 @@ else
     echo "This is nixos"
 fi
 
-
 SRC_DIR="$(pwd)"
 
 # start linking
@@ -42,8 +41,11 @@ ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "${ZSH_CUSTOM:-$ZSH/custom}/themes/vring
 #KDE
 mkdir -p "$HOME/.config/plasma-workspace/env/"
 ln -sf "$SRC_DIR/KDE/path.sh" "$HOME/.config/plasma-workspace/env/path.sh"
+
+# Too broken. Need to switch to home manager
 # ln -sf "$SRC_DIR/KDE/kglobalshortcutsrc" "$HOME/.config/kglobalshortcutsrc"
 # ln -sf "$SRC_DIR/KDE/khotkeysrc" "$HOME/.config/khotkeysrc"
+
 
 #SSH
 if ! grep -q nixos /etc/os-release; then
