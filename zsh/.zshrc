@@ -112,23 +112,12 @@ if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
-# TODO: Only one check to see if conda/mamba exists and then error in subsequent checks
-__conda_setup="$($MAMBAFORGE_ROOT/bin/conda 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+if [[ ! -e $CONDA_INSTALL_LOCATION ]]; then
+  echo "Conda install location doesn't exist"
 else
-    if [ -f "$MAMBAFORGE_ROOT/etc/profile.d/conda.sh" ]; then
-        . "$MAMBAFORGE_ROOT/etc/profile.d/conda.sh"
-    else
-        export PATH="$MAMBAFORGE_ROOT/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "$MAMBAFORGE_ROOT/etc/profile.d/mamba.sh" ]; then
-    . "$MAMBAFORGE_ROOT/etc/profile.d/mamba.sh"
+  eval "$(/run/media/stefan/SourceCode/miniforge/bin/conda shell.zsh hook)"
+  if command -v conda &>/dev/null; then
+      conda config --set auto_activate_base false
+  fi
 fi
 
-if command -v conda &>/dev/null; then
-    conda config --set auto_activate_base false
-fi
