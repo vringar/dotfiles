@@ -111,13 +111,13 @@ export NVM_DIR="$HOME/.nvm"
 if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
-
-if [[ ! -e $CONDA_INSTALL_LOCATION ]]; then
-  echo "Conda install location doesn't exist"
-else
-  eval "$(/run/media/stefan/SourceCode/miniforge/bin/conda shell.zsh hook)"
-  if command -v conda &>/dev/null; then
-      conda config --set auto_activate_base false
+if ! [[ -z "${CONDA_INSTALL_LOCATION}" ]]; then
+  if [[ -e $CONDA_INSTALL_LOCATION ]]; then
+    echo "Conda install location doesn't exist"
+  else
+    eval "$($CONDA_INSTALL_LOCATION/bin/conda shell.zsh hook)"
+    if command -v conda &>/dev/null; then
+        conda config --set auto_activate_base false
+    fi
   fi
 fi
-
