@@ -112,7 +112,7 @@ if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 if ! [[ -z "${CONDA_INSTALL_LOCATION}" ]]; then
-  if [[ -e $CONDA_INSTALL_LOCATION ]]; then
+  if ! [[ -e $CONDA_INSTALL_LOCATION ]]; then
     echo "Conda install location doesn't exist"
   else
     eval "$($CONDA_INSTALL_LOCATION/bin/conda shell.zsh hook)"
