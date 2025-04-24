@@ -42,6 +42,14 @@ ln -sf "$SRC_DIR/zsh/vringar.zsh-theme" "${ZSH_CUSTOM:-$ZSH/custom}/themes/vring
 mkdir -p "$HOME/.config/plasma-workspace/env/"
 ln -sf "$SRC_DIR/KDE/path.sh" "$HOME/.config/plasma-workspace/env/path.sh"
 
+# Starship
+ln -sf "$SRC_DIR/other/starship.toml" "$HOME/.config/starship.toml"
+
+# Alacritty
+mkdir -p "$HOME/.config/alacritty/"
+ln -sf "$SRC_DIR/other/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+
+
 #SSH
 if ! grep -q nixos /etc/os-release; then
     systemctl --user enable ssh-agent.service
