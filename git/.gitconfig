@@ -50,3 +50,9 @@
 	smtpuser = git@zabka.it
 	smtpencryption = ssl
 	smtpserverport = 465
+[gpg]
+	format = ssh
+[user]
+	signingkey = /home/stefan/.ssh/id_ed25519.pub
+[commit]
+	gpgsign = true

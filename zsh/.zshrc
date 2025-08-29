@@ -3,6 +3,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $HOME/.config/plasma-workspace/env/path.sh
 
+fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -63,6 +66,12 @@ plugins=(
   tmux git python rust nix-shell nix-zsh-completions
 )
 
+# ASDF config
+if command -v asdf &>/dev/null; then
+    export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+    plugins=("asdf" $plugins)
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -121,3 +130,5 @@ if ! [[ -z "${CONDA_INSTALL_LOCATION}" ]]; then
     fi
   fi
 fi
+
+
